@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+
+</head>
+<body>
+	<div class="container">
+		<h2 align="center">Corona Virus Tracking System</h2>
+
+		<div id="container"
+			style="width: 150%; height: 500px; margin: 0 auto"></div>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="/js/themes/gray.js"></script>
+	<script th:inline="javascript">
+    $(function(){
+    Highcharts.chart('container', {
+
+        chart: {
+            type: 'column',
+            Animation : true,
+        },
+         
+		colors:['red', 'orange', 'green', 'blue', 'purple', 'brown'],
+		
+        title: {
+            text: 'Total Deaths'
+        },
+        
+        xAxis: {
+            categories: [[${country}]],
+            crosshair: true
+        },
+        yAxis: {
+            min: 1000, 
+            
+            title: {
+                text: 'TotalDeaths'
+            }
+        },
+        
+        plotOptions: {
+            column: {
+                pointPadding: 0.5,
+                borderWidth: 5
+            }
+        },
+        series: [{
+            name: 'Country',
+            data: [[${DeathCount}]],
+            colorByPoint:true
+        }]
+      });
+    });
+</script>
+
+</body>
+</html>
